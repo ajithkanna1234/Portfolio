@@ -1,0 +1,64 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@media screen and (min-width:320px) and (max-width:640px) {
+  .App,.P1,.S{
+    flex-wrap: wrap;
+  }
+  .App{
+    margin-top: 60px;
+  }
+  .P,.D-content{
+    width: 100%;
+  }
+  .N-b{
+    display: none;
+  }
+  .N{
+    position: fixed;
+    top: 0%;
+    z-index: 99;
+    width: 100%;
+    font-size: small;
+  }
+  .N-L{
+    font-size: medium;
+  }
+  .N-img{
+    height: 14px;
+  }
+  .N-a{
+    padding: 10px;
+  }
+  .P-img{
+    width: 50%;
+  }
+  .I-A,.b{
+    margin-top: 10px;
+  }
+  .D-contente{
+    display: block;
+  }
+}
+@media screen and (min-width:641px) and (max-width:768px) {
+  .App,.S{
+    flex-wrap: wrap;
+  }
+  .App{
+    margin-top: 90px;
+  }
+  .N{
+    position: fixed;
+    top: 0%;
+    z-index: 99;
+    width: 100%;
+  }
+  .P{
+    width: 100%;
+  }
+  .P-c{
+    width:100%
+  }
+}

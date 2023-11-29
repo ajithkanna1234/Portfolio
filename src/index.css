@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .project1{
+      background-image: url(image/center.jpg);
+    }
+    .b{
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .l{
+      clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+    }
+    .b:hover{
+      transition: all 0.3s ease;
+      animation: image 1s forwards;
+    }
+    @keyframes image {
+      100%,50%{
+        clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 0 100%, 0% 50%, 0 0);
+      }
+    }
+    .A{
+      clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 0 100%, 0% 50%, 0 0);
+    }
+    .B{
+      clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+    }
+    .C{
+      background-image: url(./image/school.jpg);
+    }
+    .profile{
+      clip-path: circle(40.6% at 50% 40%);
+    }
+    .profile1{
+      clip-path: circle(50% at 50% 36%);
+    }
+  }

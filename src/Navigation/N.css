@@ -1,0 +1,19 @@
+.N-container{
+    background-color: #212b35;
+    /* border-bottom: 1px solid #a190ff; */
+}
+.section{
+    color: #a190ff;
+    max-height: 10%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.section div{
+    box-shadow: 0px 0px 0.5px 0.5px #a190ff;
+    border-radius: 10px;
+    border-bottom:5px ridge #a190ff;
+    padding: 10px;
+    background-color: #212b35;
+}
