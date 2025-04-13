@@ -9,7 +9,7 @@ function S() {
           <span className='z-10'>
             <b className=' text-md font-[fantasy] tracking-wider shadow text-green-400 p-1 bg-white border-b-4 border-r-2 rounded'><img className='h-4 inline mr-2' src={About} />About me .</b></span>
         </span>
-        <p className='indent-12 leading-loose my-2 text-sm transition-all duration-300 rounded-xl text-gray-500 p-2 mx-auto bg-white border-b-4 border-r-2 shadow-md hover:scale-[1.01] h-full w-fit break-words font-sans '>Hi I'm Ajithkanna  a creative person .I did my UG computer science in amrita college of engineering. I have 6 month Experience as an Intern in CRUD operations pvt in chennai ,during Intern I have gathered skills like HTML , CSS , ReactJS , JavaScript and Redux .</p>
+        <p className='indent-12 leading-loose my-2 text-sm transition-all duration-300 rounded-xl text-gray-500 p-2 mx-auto bg-white border-b-4 border-r-2 shadow-md hover:scale-[1.01] h-full w-fit break-words font-sans '>Hello! 👋 I'm a passionate software developer with 2+ years of experience, currently working in <a className='text-purple-500' href='https://web.loyaltri.com/' target='blank'>Loyaltri HRMS</a> at Cordova Cloud Solutions. I hold a Bachelor’s in Computer Science from Amrita College of Engineering and specialize in building scalable web applications.</p>
       </div>
       <section className='container-sm I-A bg-green-200 rounded-xl mt-1'>
         <div className='flex items-center gap-1 tracking-wider bg-white border-b-4 p-1 text-[#108edc] drop-shadow-lg'>
@@ -26,6 +26,8 @@ function S() {
           <small className='shadow my-1 px-2 py-1 inline border-b-4 rounded-lg text-purple-400 bg-white'>BOOTSTRAP</small>
           <small className='shadow my-1 px-2 py-1 inline border-b-4 rounded-lg text-indigo-400 bg-white'>PRIMEREACT</small>
           <small className='shadow my-1 px-2 py-1 inline border-b-4 rounded-lg text-cyan-400 bg-white'>ANT D</small>
+          <small className='shadow my-1 px-2 py-1 inline border-b-4 rounded-lg text-red-400 bg-white'>MongoDb</small>
+          <small className='shadow my-1 px-2 py-1 inline border-b-4 rounded-lg text-blue-400 bg-white'>Express</small>
         </div>
       </section>
     </div>
