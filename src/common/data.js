@@ -1,5 +1,5 @@
-import Profile from "@/components/pages/Profile";
-import Project from "@/components/pages/Project";
+import Profile from "@/profile/Profile";
+import Project from "@/project/Project";
 import { createRef } from "react";
 
 const Data = [
