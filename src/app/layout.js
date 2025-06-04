@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Koulen } from "next/font/google";
+import { Geist, Geist_Mono, Koulen, Roboto } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,11 +17,16 @@ const Title = Koulen({
   subsets: ['latin', 'khmer'], // 'khmer' is important for Koulen
 });
 
+const roboto = Roboto({
+  variable:"--font-roboto",
+  subsets: ["latin"],
+})
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${Title.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${Title.variable} ${roboto.variable} antialiased`}
       >
         {children}
       </body>
