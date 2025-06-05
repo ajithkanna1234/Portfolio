@@ -1,33 +1,33 @@
-import {downloadResume} from "@/components/common/downloadResume";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { tabs } from "@/components/common/data";
 
-let tabs = [
-  { id: "profile", label: "profile" },
-  { id: "project", label: "project" },
-  { id: "contact", label: "contact" },
-  { id: "resume", label: "resume", action: downloadResume },
-];
+const Nav = ({ className }) => {
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
 
-const Nav = () => {
-  let [activeTab, setActiveTab] = useState(tabs[0].id);
+  const handleTabClick = (tab) => {
+    setActiveTab(tab.id);
+    if (tab.action) tab.action();
+  };
 
   return (
-    <div className="flex space-x-3 lg:text-xl text-white text-sm font-roboto font-light sticky top-4">
-      <div className="mr-auto size-10 border p-0.5 bg-background">logo</div>
+    <nav
+      className={`
+        ${className} 
+        flex items-center space-x-3 
+        lg:text-xl text-sm text-white bg-black/30 font-roboto font-light backdrop-blur-sm
+      `}
+    >
+      <div className="mr-auto size-10 border p-0.5">logo</div>
       {tabs.map((tab) => (
         <button
           key={tab.id}
-          onClick={() => {
-            setActiveTab(tab.id);
-            if (tab.action) tab.action();
-          }}
-          className={`${
-            tab.id === "resume" ? "!bg-slate-900" : "bg-background"
-          } relative rounded px-3 py-1.5 flex items-center transition`}
-          style={{
-            WebkitTapHighlightColor: "transparent",
-          }}
+          onClick={() => handleTabClick(tab)}
+          className={`
+            relative rounded px-3 py-1.5 flex items-center transition 
+            ${tab.id === 4 ? "!bg-slate-900" : ""}
+          `}
+          style={{ WebkitTapHighlightColor: "transparent" }}
         >
           {activeTab === tab.id && (
             <motion.span
@@ -36,10 +36,10 @@ const Nav = () => {
               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
           )}
-          <span className="z-20 uppercase pb-0.5">{tab.label}</span>
+          <span className="z-20 uppercase pb-0.5">{tab.route}</span>
         </button>
       ))}
-    </div>
+    </nav>
   );
 };
 
