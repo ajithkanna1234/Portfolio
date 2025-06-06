@@ -1,16 +1,15 @@
 import React from "react";
 import { BoxReveal } from "@/components/magicui/box-reveal";
 import profileImg from "@/components/assets/image.jpg"
-import { Meteors } from "@/components/magicui/meteors";
+// import { Meteors } from "@/components/magicui/meteors";
 import { LineShadowText } from "../magicui/line-shadow-text";
 
 const Home = () => {
   return (
     <div className="font-koulen lg:text-9xl whitespace-nowrap grid tracking-wider text-white">
-      <div className="flex gap-[3%] h-fit">
+      {/* <div className="flex gap-[3%] h-fit">
       <BoxReveal className="text-gray-300 font-sans">What’s</BoxReveal><LineShadowText className="italic" shadowColor={"pink"}> up! </LineShadowText>
-      </div>
-      {/* <Meteors className={"-z-10"}/> */}
+      </div> */}
     </div>
   );
 };
