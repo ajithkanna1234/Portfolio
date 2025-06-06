@@ -6,12 +6,35 @@ import { createRef } from "react";
 import { downloadResume } from "./downloadResume";
 import { ArrowDownToLine, CircleUserRound, FolderKanban, House } from "lucide-react";
 
-export const tabs = [
-  { id: 0,icon:"",element:<Nav/> , className:"fixed top-2 w-4/5 "},
-  { id: 1,icon:<House/>, route: "home" ,element:<Home/>},
-  { id: 2,icon:<FolderKanban />, route: "project",element:<Project/> },
-  { id: 3,icon:<CircleUserRound/>, route: "contact",element:<Contact/> },
-  { id: 4,icon:<ArrowDownToLine />, route: "resume", action: downloadResume },
+export const Data = [
+  {
+    id: 1,
+    icon: <House />,
+    label: "home",
+    component: <Home />,
+    className: "",
+    sectionId: "home" // Add this
+  },
+  {
+    id: 2,
+    icon: <FolderKanban />,
+    label: "project",
+    component: <Project />,
+    className: "",
+    sectionId: "projects" // Add this
+  },
+  {
+    id: 3,
+    icon: <CircleUserRound />,
+    label: "contact",
+    component: <Contact />,
+    className: "",
+    sectionId: "contact" // Add this
+  },
+  {
+    id: 4,
+    icon: <ArrowDownToLine />,
+    label: "resume",
+    action: downloadResume
+  }
 ];
-
-
