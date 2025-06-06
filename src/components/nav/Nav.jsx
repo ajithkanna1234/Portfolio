@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const Nav = ({
   glowIntensity = 0.6,
+  className
 }) => {
   const [activeIndex, setActiveIndex] = useState(1);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -51,26 +52,6 @@ const Nav = ({
     }
   };
 
-  useEffect(() => {
-    const activeElement = containerRef.current?.children[1]?.children[0]?.children[activeIndex];
-    if (activeElement) {
-      updateDimensions(activeElement);
-    }
-
-    const resizeObserver = new ResizeObserver(() => {
-      const currentActiveElement = containerRef.current?.children[1]?.children[0]?.children[activeIndex];
-      if (currentActiveElement) {
-        updateDimensions(currentActiveElement);
-      }
-    });
-
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
-
-    return () => resizeObserver.disconnect();
-  }, [activeIndex]);
-
   const morphingBackground = {
     initial: { opacity: 0 },
     animate: {
@@ -107,19 +88,19 @@ const Nav = ({
   };
 
   return (
-    <div className="sticky top-1 z-50 w-fit mx-auto" ref={containerRef}>
+    <div className={`${className}`} ref={containerRef}>
       {/* Navigation Container */}
-      <nav className="relative">
+      <nav className="relative h-full">
         {/* Morphing Background */}
         <motion.div
-          className="absolute bg-white/10 backdrop-blur-sm rounded-xl"
+          className="absolute bg-white/10 backdrop-blur-sm rounded"
           initial="initial"
           animate="animate"
           variants={morphingBackground}
         />
 
         {/* Navigation Items */}
-        <ul className="flex items-center gap-1 p-1 relative z-10">
+        <ul className="md:flex grid grid-cols-4 flex-col md:gap-4 md:p-4 h-full relative z-10">
           {Data.map((item) => (
             <motion.li
               key={item.id}
@@ -129,7 +110,7 @@ const Nav = ({
             >
               <motion.button
                 data-active-index={item.id}
-                className="px-5 py-2.5 rounded-lg font-medium text-sm flex items-center gap-3 relative overflow-hidden"
+                className="md:px-5 py-3 rounded font-medium text-sm flex flex-col w-full justify-center items-center gap-2 relative overflow-hidden"
                 onClick={(e) => handleClick(item.id, e, item)}
                 variants={itemVariants}
                 animate={
@@ -154,7 +135,7 @@ const Nav = ({
                 {/* Active State Shimmer */}
                 {activeIndex === item.id && (
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded"
                     initial={{ x: "-100%" }}
                     style={{
                       width: dimensions.width,
