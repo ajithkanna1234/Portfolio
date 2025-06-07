@@ -7,8 +7,8 @@ export default function Home() {
   return (
    <main className="relative h-screen w-screen overflow-hidden">
       <div className="grid md:grid-cols-[auto_1fr] h-full w-full gap-4">
-        <Nav className="h-full sticky top-0 bg-[#121212]" />
-        <div className="h-full overflow-y-auto">
+        <Nav className="h-full sticky top-0 bg-black" />
+        <div className="h-full overflow-y-scroll">
           {Data?.map((object, i) => (
             <div
               key={i}
@@ -20,7 +20,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
+        </div>
     </main>
   );
 }
