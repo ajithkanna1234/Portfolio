@@ -3,7 +3,7 @@ import Project from "@/components/project/Project";
 import Contact from "@/components/contact/Contact";
 import Nav from "@/components/nav/Nav";
 import { createRef } from "react";
-import { downloadResume } from "./downloadResume";
+// import { downloadResume } from "./downloadResume";
 import { ArrowDownToLine, CircleUserRound, FolderKanban, House } from "lucide-react";
 
 export const Data = [
@@ -35,6 +35,5 @@ export const Data = [
     id: 4,
     icon: <ArrowDownToLine />,
     label: "resume",
-    action: downloadResume
   }
 ];

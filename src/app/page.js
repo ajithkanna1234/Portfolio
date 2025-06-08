@@ -14,7 +14,7 @@ export default function Home() {
               key={i}
               id={object.sectionId}
               ref={object.ref}
-              className={`h-screen w-full box-border p-4 ${object.className}`}
+              className={`w-full box-border p-2 md:p-4 ${object.className}`}
             >
               {object.component}
             </div>

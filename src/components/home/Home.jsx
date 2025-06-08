@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DecryptedText from "../animation/decrypted-text";
-import { MorphingText } from "../magicui/morphing-text";
-import TiltedCard from "../animation/tiledCard/tiled-card";
 import { BoxReveal } from "../animation/box-reveal";
-import { CoolMode } from "../animation/cool-mode";
 
 const Home = () => {
   const texts = [
     "MERN Stack Developer",
     "Full Stack Developer",
+  ];
+  const Summary = [
+    { title: "About", desc: "MERN Stack Developer with 2 years of experience building scalable web applications using React.js, Node.js, Express, and MongoDB. and collaborating in Agile teams. Skilled in UI/UX design, RESTful APIs, and state management ( Redux Toolkit, Context API). Certified Full-Stack Developer with a focus on clean code and responsive design." },
+    { title: "Technical Skills", desc: "MERN Stack Developer with 2 years of experience building scalable web applications using React.js, Node.js, Express, and MongoDB. and collaborating in Agile teams. Skilled in UI/UX design, RESTful APIs, and state management ( Redux Toolkit, Context API). Certified Full-Stack Developer with a focus on clean code and responsive design." },
   ];
 
   return (
@@ -26,25 +27,34 @@ const Home = () => {
               ease: "easeOut"
             }
           }}
-          className="text-5xl md:text-6xl lg:text-8xl grid md:gap-8 gap-4 md:mt-10 items-center"
+          className="grid md:grid-cols-2 h-screen"
           exit={{ opacity: 0 }}
         >
-          <div className="flex items-center gap-8">
-            <DecryptedText text="What's" className="text-gray-700" encryptedClassName="text-pink-700" /><span className="text-gray-400 italic">Up</span><span className="text-pink-800">!</span>
-          </div>
-          <div className="grid md:grid-cols-[auto_1fr] gap-8">
+          <section className=" flex flex-col md:gap-8 gap-4 text-5xl md:text-6xl lg:text-8xl">
+            <div className="flex items-center gap-8">
+              <DecryptedText text="What's" className="text-yellow-400" encryptedClassName="text-pink-700" /><span className="text-gray-400 italic">Up</span><span className="text-pink-800">!</span>
+            </div>
             <span className="text-gray-400 font-light text-4xl md:text-5xl lg:text-7xl">im </span>
-            <BoxReveal>
-              <div className="font-koulen tracking-widest italic whitespace-nowrap text-indigo-900 grid px-3 py-1 relative">
-                Ajith Kanna
-                <div className="bg-gray-400 text-base text-black w-fit px-4">SOFTWARE DEVELOPER</div>
-              </div>
-            </BoxReveal>
-          </div>
+            <div className="grid md:grid-cols-[auto_1fr] gap-8 mt-10">
+              <BoxReveal>
+                <div className="font-koulen tracking-widest italic whitespace-nowrap text-indigo-600 grid px-3 py-2 sm:mb-4">
+                  <p>Ajith Kanna</p>
+                  <div className="bg-white text-base text-black w-fit px-4">SOFTWARE DEVELOPER</div>
+                </div>
+              </BoxReveal>
+            </div>
+          </section>
+          <section className="flex flex-col justify-end pb-6">
+            <img src="https://pngimages.com/images/hd/pikachu-transparent-background-png-grr-m21sdzmdwqiq4pcm.jpg" className="size-20 animate-bounce" />
+            <div className="p-2 bg-white/10 rounded-xl w-fit">
+              <h1 className={`font-pixel text-yellow-400 text-xl tracking-wider mb-4`}>ABOUT ME</h1>
+                <div className="bg-black rounded-lg font-roboto text-justify font-light md:text-xl text-white md:p-8 p-6">MERN Stack Developer with 2 years of experience building scalable web applications using React.js, Node.js, Express, and MongoDB. and collaborating in Agile teams. Skilled in UI/UX design, RESTful APIs, and state management ( Redux Toolkit, Context API). Certified Full-Stack Developer with a focus on clean code and responsive design.</div>
+            </div>
+          </section>
         </motion.div>
       </AnimatePresence>
     </div>
   );
 };
 
-export default React.memo(Home);
+export default Home
