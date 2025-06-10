@@ -71,7 +71,7 @@ const Profile = () => {
       <div
         className={`h-screen md:w-1/2 w-full fixed top-0 -z-10 ${
           view ? "translate-x-full" : "md:translate-x-1/2"
-        } transition-transform duration-500 ease-linear`}
+        } transition-transform duration-500 ease-in-out`}
       >
         <Orb
           hoverIntensity={0.5}

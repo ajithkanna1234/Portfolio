@@ -2,16 +2,6 @@ import { Geist, Geist_Mono, Koulen, Pixelify_Sans, Roboto } from "next/font/goog
 import "./globals.css";
 import ClickSpark from "@/components/animation/click-spark";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const Title = Koulen({
   variable: "--font-koulen",
   weight: '400', // Koulen only has one weight (400)
@@ -32,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pixelText.variable} ${Title.variable} ${roboto.variable} antialiased`}
+        className={` ${pixelText.variable} ${Title.variable} ${roboto.variable} antialiased`}
       >
         <ClickSpark
         >
