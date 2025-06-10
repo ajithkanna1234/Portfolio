@@ -1,12 +1,6 @@
 "use client";
 
-import Profile from "@/pages/Profile";
-import Skill from "@/pages/Skills";
+import R from "@/R";
 export default function Home() {
-  return (
-   <main className="relative h-screen ">
-    <Profile/>
-    <Skill/>
-    </main>
-  );
+  return (<R/>);
 }
