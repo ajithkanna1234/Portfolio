@@ -7,6 +7,7 @@ import Image from "next/image";
 import Orb from "@/components/animation/orb/Orb";
 import { DownloadCloudIcon } from "lucide-react";
 import { useResumeDownload } from "@/components/common/downloadResume";
+import { InteractiveHoverButton } from "@/components/animation/hoverButton/hover-button";
 
 const Profile = ({id,view}) => {
   const { downloadResume, downloadProgress, isDownloading } =
@@ -40,8 +41,7 @@ const Profile = ({id,view}) => {
         collaborating in Agile teams. Skilled in UI/UX design, RESTful APIs, and
         state management ( Redux Toolkit, Context API). Certified Full-Stack
         Developer with a focus on clean code and responsive design.
-        <button
-          className="cursor-pointer size-fit font-medium px-3 py-2 mx-auto border transition-all duration-100 ease-linear rounded-full hover:bg-white hover:text-black hover:scale-105"
+        <InteractiveHoverButton
           onClick={downloadResume}
         >
           {isDownloading ? (
@@ -49,7 +49,7 @@ const Profile = ({id,view}) => {
           ) : (
             "Resume"
           )}
-        </button>
+        </InteractiveHoverButton>
       </div>
       <div
         className={`h-screen md:w-1/2 w-full fixed top-0 -z-10 ${
