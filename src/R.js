@@ -4,6 +4,8 @@ import { useRef, useEffect, useState } from 'react'
 import Profile from './pages/Profile'
 import Skill from './pages/Skills'
 import Project from './pages/Project'
+import Contact from './pages/Contact'
+import { ArrowBigUpDash } from 'lucide-react'
 
 const ScrollSections = () => {
   const sectionRefs = useRef([])
@@ -25,10 +27,22 @@ const ScrollSections = () => {
       id: 'projects',
       component: Project,
       ref: (el) => (sectionRefs.current[2] = el)
-    }
+    },
+    {
+      id: 'contacts',
+      component: Contact,
+      ref: (el) => (sectionRefs.current[3] = el)
+    },
     // Add more sections as needed
   ]
-
+ const handleScroll = () => {
+    const currentIndex = sectionRefs.current.findIndex(ref => ref && ref.id === visibleSection)
+    if (currentIndex > 0) {
+      sectionRefs.current[currentIndex - 1].scrollIntoView({ behavior: 'smooth' })
+    } else {
+      sectionRefs.current[0].scrollIntoView({ behavior: 'smooth' })
+    }
+  }
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,6 +78,7 @@ const ScrollSections = () => {
           <section.component view={visibleSection} id={section.id}/>
         </motion.section>
       ))}
+      <ArrowBigUpDash className='bg-white rounded-full size-10 fixed left-1/2 right-1/2 bottom-2 z-50' onClick={handleScroll}/>
     </div>
   )
 }
