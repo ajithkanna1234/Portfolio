@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import Profile from './pages/Profile'
 import Skill from './pages/Skills'
+import Project from './pages/Project'
 
 const ScrollSections = () => {
   const sectionRefs = useRef([])
@@ -19,6 +20,11 @@ const ScrollSections = () => {
       id: 'skills',
       component: Skill,
       ref: (el) => (sectionRefs.current[1] = el)
+    },
+    {
+      id: 'projects',
+      component: Project,
+      ref: (el) => (sectionRefs.current[2] = el)
     }
     // Add more sections as needed
   ]
@@ -44,14 +50,14 @@ const ScrollSections = () => {
   }, [])
 
   return (
-    <div className="space-y-20">
+    <div className="">
       {sections.map((section, index) => (
         <motion.section
           key={section.id}
           id={section.id}
           ref={section.ref}
           initial={{ opacity: 0 }}
-          animate={{ opacity: visibleSection === section.id ? 1 : 0.5 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="h-screen"
         >
