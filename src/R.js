@@ -73,7 +73,7 @@ const ScrollSections = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="h-screen"
+          className="min-h-screen"
         >
           <section.component view={visibleSection} id={section.id}/>
         </motion.section>
