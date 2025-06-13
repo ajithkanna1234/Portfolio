@@ -19,18 +19,19 @@ const Project = ({ id, view }) => {
       <h2 className="text-4xl md:text-5xl font-koulen sticky top-0 text-white mx-[2%] flex items-center justify-center row-span-1">
         Projects
       </h2>
-      <div className="row-span-5 grid md:grid-rows-2 md:grid-cols-2 gap-2 rounded-xl m-[2%]">
+      <div className="row-span-5 grid md:grid-rows-2 md:grid-cols-2 rounded-xl m-[2%]">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="rounded-lg relative text-white border"
+            className="relative text-white shadow-sm shadow-white/10 overflow-hidden"
             onMouseEnter={() => setHoveringIndex(index)}
             onMouseLeave={() => setHoveringIndex(null)}
             onTouchStart={() => setHoveringIndex(index)}
             onTouchEnd={() => setHoveringIndex(null)}
           >
-            {/* <div className={`transition-all size-full ease-linear top-0 ${isHovering === index ? "absolute scale-100 rounded-none bg-white/10" : "scale-0 rounded-full bg-white/5"}`}></div> */}
+            <div className={`transition-all size-full ease-linear p-2 z-50 top-0 ${isHovering === index ? " translate-y-0 bg-gray-950" : "-translate-y-100 bg-gray-950/50"}`}>
             {project.name}
+            </div>
           </div>
         ))}
       </div>
