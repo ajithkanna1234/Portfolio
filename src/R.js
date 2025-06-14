@@ -5,7 +5,7 @@ import Profile from './pages/Profile'
 import Skill from './pages/Skills'
 import Project from './pages/Project'
 import Contact from './pages/Contact'
-import { ArrowBigUpDash } from 'lucide-react'
+import { ArrowBigUpDash, ArrowDown, ArrowUp } from 'lucide-react'
 
 const ScrollSections = () => {
   const sectionRefs = useRef([])
@@ -35,12 +35,18 @@ const ScrollSections = () => {
     },
     // Add more sections as needed
   ]
- const handleScroll = () => {
-    const currentIndex = sectionRefs.current.findIndex(ref => ref && ref.id === visibleSection)
-    if (currentIndex > 0) {
-      sectionRefs.current[currentIndex - 1].scrollIntoView({ behavior: 'smooth' })
+  const handleScroll = () => {
+    const currentIndex = sections.findIndex(section => section.id === visibleSection)
+    
+    if (currentIndex === -1) {
+      // If no section is visible (at the very top), scroll to the first section
+      sectionRefs.current[0]?.scrollIntoView({ behavior: 'smooth' })
+    } else if (currentIndex === sections.length - 1) {
+      // If at the last section, scroll to the first section (loop)
+      sectionRefs.current[0]?.scrollIntoView({ behavior: 'smooth' })
     } else {
-      sectionRefs.current[0].scrollIntoView({ behavior: 'smooth' })
+      // Scroll to the next section
+      sectionRefs.current[currentIndex + 1]?.scrollIntoView({ behavior: 'smooth' })
     }
   }
   useEffect(() => {
@@ -62,9 +68,12 @@ const ScrollSections = () => {
 
     return () => observer.disconnect()
   }, [])
-
+  // Determine which arrow to show
+  const currentIndex = sections.findIndex(section => section.id === visibleSection)
+  const showUpArrow = currentIndex > 0
+  const showDownArrow = currentIndex < sections.length - 1 || currentIndex === -1
   return (
-    <div className="">
+    <div className="grid gap-4">
       {sections.map((section, index) => (
         <motion.section
           key={section.id}
@@ -78,7 +87,10 @@ const ScrollSections = () => {
           <section.component view={visibleSection} id={section.id}/>
         </motion.section>
       ))}
-      <ArrowBigUpDash className='bg-white rounded-full size-10 fixed left-1/2 right-1/2 bottom-2 z-50' onClick={handleScroll}/>
+      {showUpArrow &&
+      <ArrowUp className='text-white bg-transparent backdrop-blur-lg rounded-full size-7 fixed left-1/2 right-1/2 bottom-2 z-50' onClick={handleScroll}/>}
+      {showDownArrow && <ArrowDown className='text-white bg-transparent backdrop-blur-lg rounded-full size-7 fixed left-1/2 right-1/2 bottom-2 z-50' onClick={handleScroll}/>
+}
     </div>
   )
 }

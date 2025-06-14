@@ -15,7 +15,7 @@ const Profile = ({id,view}) => {
 
   return (
     <div
-      className={`md:text-8xl text-5xl font-bold p-[4%] relative z-50 tracking-widest h-full grid gap-4`}
+      className={`md:text-8xl text-5xl font-bold p-[4%] relative z-50 tracking-widest h-screen grid gap-4`}
     >
       <div className="space-y-4 mt-10">
         <DecryptedText
@@ -53,6 +53,7 @@ const Profile = ({id,view}) => {
       </div>
       <div
         className={`h-screen md:w-1/2 w-full fixed top-0 -z-10 ${
+          view === "projects"? "opacity-0" :
           view === id ? "translate-x-full" : "md:translate-x-1/2"
         } transition-transform duration-500 ease-in-out`}
       >
