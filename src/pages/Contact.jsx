@@ -1,19 +1,37 @@
 import { CoolMode } from '@/components/animation/cool-mode';
 import { Send } from 'lucide-react';
 import React from 'react';
+import emailjs from 'emailjs-com';
+
+const SERVICE_ID = "service_9n3bm1l";
+const TEMPLATE_ID = "template_n7gp61n";
+const PUBLIC_KEY = "tP09gmKiYz72wXolg";
 
 const Contact = () => {
+const handleOnSubmit = (e) => {
+     e.preventDefault();
+     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY)
+       .then((result) => {
+         alert('Message Sent Successfully')
+       }, (error) => {
+         console.log(error.text);
+         alert('Something went wrong!')
+       });
+     e.target.reset()
+   };
   return (
     <div className='relative h-screen bg-gradient-to-b from-black/10 to-black z-50'>
-      <div className='h-full lg:h-3/4 w-full bg-black/50 lg:border border-white/10 backdrop-blur-xl md:rounded-t-full absolute bottom-0 flex items-center justify-center'>
-        <div className='relative flex flex-col items-center justify-center gap-8 w-full px-4 py-8 md:py-0'>
-          <h2 className="text-4xl md:text-5xl font-koulen z-50 text-white mx-[2%] w-fit bg-black py-4">
+      <div className='h-full w-full bg-black/50 backdrop-blur-xl absolute bottom-0 flex items-center justify-center'>
+        <div className='relative flex flex-col items-center justify-center gap-8 w-full px-4 py-8'>
+          <h2 className="text-4xl md:text-5xl font-koulen z-50 text-white m-[2%] w-fit py-4">
             Contact Me
           </h2>
 
-          <div className='w-full md:w-1/2 space-y-8 flex flex-col items-center'>
+          <form className='w-full md:w-1/2 space-y-8 flex flex-col items-center' onSubmit={handleOnSubmit}>
             <input
               type="text"
+              id="from_name"
+              name="from_name"
               placeholder="Enter your name"
               className="w-full p-4 text-white !bg-transparent border-b border-white focus:outline-none focus:border-blue-500
                         [-webkit-text-fill-color:_white] 
@@ -23,19 +41,29 @@ const Contact = () => {
 
             <input
               type="email"
+              id="from_email"
+              name="from_email"
               placeholder="Enter your email"
               className="w-full p-4 text-white !bg-transparent border-b border-white focus:outline-none focus:border-blue-500
                         [-webkit-text-fill-color:_white] 
                         [&:-webkit-autofill]:!bg-transparent
                         transition-[background-color] duration-[5000s] ease-[ease] delay-[0s]"
             />
-
+            <textarea
+              name="message"
+              placeholder="Enter your message"
+              className="w-full p-4 text-white !bg-transparent resize border rounded-lg border-white focus:outline-none focus:border-blue-500
+                        [-webkit-text-fill-color:_white] 
+                        [&:-webkit-autofill]:!bg-transparent
+                        transition-[background-color] duration-[5000s] ease-[ease] delay-[0s]"
+              rows="5"
+            />
             <CoolMode>
-              <button className="rounded-2xl border-2 border-dashed border-white bg-black px-6 py-3 font-semibold uppercase text-white transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_white] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none">
-                <Send/>
+              <button type="submit" className="rounded-2xl border-2 border-dashed border-white bg-black px-6 py-3 font-semibold uppercase text-white transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_white] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none">
+                <Send />
               </button>
             </CoolMode>
-          </div>
+          </form>
         </div>
       </div>
     </div>
