@@ -1,6 +1,6 @@
 import { CoolMode } from "@/components/animation/cool-mode";
 import { Send } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
 const SERVICE_ID = "service_9n3bm1l";
@@ -8,6 +8,7 @@ const TEMPLATE_ID = "template_n7gp61n";
 const PUBLIC_KEY = "tP09gmKiYz72wXolg";
 
 const Contact = () => {
+  const [value,setvalue]=useState("")
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
