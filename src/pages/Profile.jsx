@@ -101,7 +101,7 @@ const Profile = memo(({ id, view }) => {
       <header className="space-y-4 mt-10">
         <DecryptedText
           text={PROFILE_CONTENT.title}
-          className="text-white italic relative z-50"
+          className="text-white !tracking-wide italic relative z-50"
           encryptedClassName="text-pink-700"
         />
         

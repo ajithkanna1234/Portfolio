@@ -9,6 +9,7 @@ import img1 from "../components/assets/project/project-1.png";
 import img2 from "../components/assets/project/project-2.png";
 import img3 from "../components/assets/project/project-3.png";
 import img4 from "../components/assets/project/project-4.png";
+import img5 from "../components/assets/project/project-5.png";
 
 // Project data configuration
 const PROJECTS_DATA = [
@@ -18,6 +19,10 @@ const PROJECTS_DATA = [
     link: "https://ajithkanna1234.github.io/weather-app/",
     overlayColor: "bg-red-900/80",
     image: img1.src,
+    items:[
+  { id: 1, img:img1.src },
+  { id: 2, img:img5.src },
+]
   },
   {
     id: 2,
@@ -138,8 +143,8 @@ const ProjectCard = ({
   `;
 
   const detailsClasses = `
-    ${isHovered ? "opacity-100 border-[#555] bg-black z-50" : "opacity-0 border-transparent"}
-    rounded-lg text-base sm:text-lg md:text-xl lg:text-2xl border font-bold 
+    ${isHovered ? "opacity-100 bg-[#171717] z-50" : "opacity-0"}
+    rounded-lg text-base sm:text-lg md:text-xl lg:text-2xl font-bold 
     transition-opacity ${ANIMATION_DURATION} w-full h-full
   `;
 
@@ -176,7 +181,7 @@ const ProjectCard = ({
         className={detailsClasses}
         onClick={(e) => e.stopPropagation()}
       >
-        <Carousel />
+        <Carousel items={project.items}/>
         
         {/* External Link Button */}
         <button

@@ -52,7 +52,7 @@ const handleOnSubmit = (e) => {
             <textarea
               name="message"
               placeholder="Enter your message"
-              className="w-full p-4 text-white !bg-transparent resize border rounded-lg border-white focus:outline-none focus:border-blue-500
+              className="w-full p-4 text-white !bg-[#171717] resize border rounded-lg border-[#171717] focus:outline-none focus:border-blue-500
                         [-webkit-text-fill-color:_white] 
                         [&:-webkit-autofill]:!bg-transparent
                         transition-[background-color] duration-[5000s] ease-[ease] delay-[0s]"

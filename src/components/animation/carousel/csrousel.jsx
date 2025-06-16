@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 import "./Carousel.css";
+import Image from "next/image";
 
 const DEFAULT_ITEMS = [
   {
@@ -37,7 +38,7 @@ const GAP = 16;
 const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
 
 export default function Carousel({
-  items = DEFAULT_ITEMS,
+  items = [],
   autoplay = true,
   autoplayDelay = 3000,
   pauseOnHover = false,
@@ -154,11 +155,11 @@ export default function Carousel({
   const dragProps = loop
     ? {}
     : {
-        dragConstraints: {
-          left: -trackItemOffset * (carouselItems.length - 1),
-          right: 0,
-        },
-      };
+      dragConstraints: {
+        left: -trackItemOffset * (carouselItems.length - 1),
+        right: 0,
+      },
+    };
 
   return (
     <div
@@ -193,22 +194,33 @@ export default function Carousel({
                 key={index}
                 className={`carousel-item ${round ? "round" : ""}`}
                 style={{
-                  width: itemWidth,
+                  width: itemWidth || "100%",
                   height: round ? itemWidth : "100%",
                   rotateY: transforms[index],
                   ...(round && { borderRadius: "50%" }),
                 }}
                 transition={effectiveTransition}
               >
-                <div className={`carousel-item-header ${round ? "round" : ""}`}>
-                  <span className="carousel-icon-container">
-                    {/* {item.icon} */}
-                  </span>
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${item?.img})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
+                  <div className="relative grid size-full">1</div>
                 </div>
-                <div className="carousel-item-content">
+                {/* <div className={`carousel-item-header ${round ? "round" : ""}`}>
+                  <span className="carousel-icon-container">
+                    {item.icon}
+                  </span>
+                </div> */}
+                {/* <div className="carousel-item-content">
                   <div className="carousel-item-title">{item.title}</div>
                   <p className="carousel-item-description">{item.description}</p>
-                </div>
+                </div> */}
               </motion.div>
             ))}
           </motion.div>
@@ -217,13 +229,12 @@ export default function Carousel({
               {items.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`carousel-indicator ${
-                    currentIndex % items.length === index ? "active" : "inactive"
-                  }`}
+                  className={`carousel-indicator ${currentIndex % items.length === index ? "active" : "inactive"
+                    }`}
                   animate={{
                     scale: currentIndex % items.length === index ? 1.2 : 1,
                   }}
-                  onClick={(e) => {e.stopPropagation();setCurrentIndex(index)}}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(index) }}
                   transition={{ duration: 0.15 }}
                 />
               ))}
