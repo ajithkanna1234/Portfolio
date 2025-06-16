@@ -11,7 +11,7 @@ const sectionAnimations = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -50 },
-  transition: { duration: 0.6, ease: "easeInOut" }
+  transition: { duration: 0.6, ease: "easeInOut" },
 };
 const scrollButtonAnimations = {
   initial: { opacity: 0, scale: 0 },
@@ -19,36 +19,41 @@ const scrollButtonAnimations = {
   exit: { opacity: 0, scale: 0 },
   whileHover: { scale: 1.1 },
   whileTap: { scale: 0.95 },
-  transition: { duration: 0.3, ease: "easeOut" }
+  transition: { duration: 0.3, ease: "easeOut" },
 };
 // Configuration for sections
 const SECTIONS_CONFIG = [
   { id: "profile", component: Profile, label: "Profile" },
   { id: "skills", component: Skill, label: "Skills" },
   { id: "projects", component: Project, label: "Projects" },
-  { id: "contacts", component: Contact, label: "Contact" }
+  { id: "contacts", component: Contact, label: "Contact" },
 ];
 // Observer configuration
 const INTERSECTION_CONFIG = {
   threshold: 0.5,
-  rootMargin: "-10% 0px -10% 0px"
+  rootMargin: "-10% 0px -10% 0px",
 };
 const ScrollSections = () => {
   const sectionRefs = useRef([]);
   const [visibleSection, setVisibleSection] = useState(null);
   const [isScrolling, setIsScrolling] = useState(false);
   // Memoized current section index
-  const currentSectionIndex = useMemo(() =>
-    SECTIONS_CONFIG.findIndex(section => section.id === visibleSection),
+  const currentSectionIndex = useMemo(
+    () => SECTIONS_CONFIG.findIndex((section) => section.id === visibleSection),
     [visibleSection]
   );
   // Navigation state
-  const navigationState = useMemo(() => ({
-    canScrollUp: currentSectionIndex > 0,
-    canScrollDown: currentSectionIndex < SECTIONS_CONFIG.length - 1 || currentSectionIndex === -1,
-    isAtTop: currentSectionIndex === -1,
-    isAtBottom: currentSectionIndex === SECTIONS_CONFIG.length - 1
-  }), [currentSectionIndex]);
+  const navigationState = useMemo(
+    () => ({
+      canScrollUp: currentSectionIndex > 0,
+      canScrollDown:
+        currentSectionIndex < SECTIONS_CONFIG.length - 1 ||
+        currentSectionIndex === -1,
+      isAtTop: currentSectionIndex === -1,
+      isAtBottom: currentSectionIndex === SECTIONS_CONFIG.length - 1,
+    }),
+    [currentSectionIndex]
+  );
   // Optimized scroll handler with debouncing
   const handleScroll = useCallback(() => {
     if (isScrolling) return;
@@ -68,7 +73,7 @@ const ScrollSections = () => {
     if (targetSection) {
       targetSection.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
     // Reset scrolling state after animation completes
@@ -85,7 +90,7 @@ const ScrollSections = () => {
     if (targetSection) {
       targetSection.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
     setTimeout(() => setIsScrolling(false), 800);
@@ -93,6 +98,13 @@ const ScrollSections = () => {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event) => {
+      const activeElement = document.activeElement;
+      const isInputFocused =
+        activeElement.tagName === "INPUT" ||
+        activeElement.tagName === "TEXTAREA";
+
+      // Skip keyboard handling for inputs
+      if (isInputFocused) return;
       switch (event.key) {
         case "ArrowDown":
         case " ": // Spacebar
@@ -109,7 +121,9 @@ const ScrollSections = () => {
           break;
         case "End":
           event.preventDefault();
-          sectionRefs.current[SECTIONS_CONFIG.length - 1]?.scrollIntoView({ behavior: "smooth" });
+          sectionRefs.current[SECTIONS_CONFIG.length - 1]?.scrollIntoView({
+            behavior: "smooth",
+          });
           break;
       }
     };
@@ -118,23 +132,20 @@ const ScrollSections = () => {
   }, [handleScroll, handleScrollUp, navigationState]);
   // Intersection Observer setup
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setVisibleSection(entry.target.id);
-          }
-        });
-      },
-      INTERSECTION_CONFIG
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisibleSection(entry.target.id);
+        }
+      });
+    }, INTERSECTION_CONFIG);
     // Observe all sections
     const currentRefs = sectionRefs.current;
-    currentRefs.forEach(ref => {
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
     return () => {
-      currentRefs.forEach(ref => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -175,7 +186,7 @@ const ScrollSections = () => {
           <motion.section
             key={section.id}
             id={section.id}
-            ref={el => (sectionRefs.current[index] = el)}
+            ref={(el) => (sectionRefs.current[index] = el)}
             {...sectionAnimations}
             className="min-h-screen relative"
             aria-label={section.label}
@@ -203,23 +214,28 @@ const ScrollSections = () => {
         "Scroll to next section"
       )}
       {/* Section Indicator */}
-      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 
-                      flex flex-col gap-2">
+      <div
+        className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 
+                      flex flex-col gap-2"
+      >
         {SECTIONS_CONFIG.map((section, index) => (
           <button
             key={section.id}
             onClick={() => {
               if (!isScrolling) {
                 setIsScrolling(true);
-                sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
+                sectionRefs.current[index]?.scrollIntoView({
+                  behavior: "smooth",
+                });
                 setTimeout(() => setIsScrolling(false), 800);
               }
             }}
             className={`w-3 h-3 rounded-full transition-all duration-300 
-                       ${visibleSection === section.id
+                       ${
+              visibleSection === section.id
                 ? "bg-white scale-125"
                 : "bg-white/40 hover:bg-white/60"
-              }`}
+            }`}
             aria-label={`Go to ${section.label} section`}
             disabled={isScrolling}
           />
