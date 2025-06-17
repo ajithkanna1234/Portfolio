@@ -1,5 +1,6 @@
 import { CoolMode } from "@/components/animation/cool-mode";
 import { Send } from "lucide-react";
+import { motion } from "framer-motion"
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
@@ -8,7 +9,7 @@ const TEMPLATE_ID = "template_n7gp61n";
 const PUBLIC_KEY = "tP09gmKiYz72wXolg";
 
 const Contact = () => {
-  const [value,setvalue]=useState("")
+  const [value, setvalue] = useState("")
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -20,24 +21,34 @@ const Contact = () => {
     const timeString = `${hours}:${minutes}:${seconds}`;
 
     const formData = new FormData(e.target);
-    const formValues = {date: formattedDate, time:timeString,...Object.fromEntries(formData.entries()) }
+    const formValues = { date: formattedDate, time: timeString, ...Object.fromEntries(formData.entries()) }
 
-     emailjs.send(SERVICE_ID, TEMPLATE_ID, formValues, PUBLIC_KEY)
-       .then((result) => {
-         alert('Message Sent Successfully')
-       }, (error) => {
-         console.log(error.text);
-         alert('Something went wrong!')
-       });
-     e.target.reset()
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, formValues, PUBLIC_KEY)
+      .then((result) => {
+        alert('Message Sent Successfully')
+      }, (error) => {
+        console.log(error.text);
+        alert('Something went wrong!')
+      });
+    e.target.reset()
   };
   return (
     <div className="relative h-screen bg-gradient-to-b from-black/10 to-black z-50">
       <div className="h-full w-full bg-black/50 backdrop-blur-xl absolute bottom-0 flex items-center justify-center">
         <div className="relative flex flex-col items-center justify-center gap-8 w-full px-4 py-8">
-          <h2 className="text-4xl md:text-5xl font-koulen z-50 text-white m-[2%] w-fit py-4">
-            Contact Me
-          </h2>
+          <motion.header
+            className="flex items-center justify-center"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-koulen text-white tracking-wider">
+              <motion.span
+                className="inline-block"
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                Contact ME
+              </motion.span>
+            </h1>
+          </motion.header>
 
           <form
             className="w-full md:w-1/2 space-y-8 flex flex-col font-sans items-center"

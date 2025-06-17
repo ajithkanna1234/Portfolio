@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import {motion} from "framer-motion"
 import { SquareArrowOutUpRight } from "lucide-react";
 import Carousel from "@/components/animation/carousel/csrousel";
 
@@ -114,7 +115,7 @@ const PROJECTS_DATA = [
 const ANIMATION_DURATION = "duration-300";
 const HOVER_TRANSLATE = "translate-y-4";
 
-const Project = ({ id, view }) => {
+const Project = ({ id = 1, view = 1 }) => {
   const [hoveredProjectId, setHoveredProjectId] = useState(null);
 
   // Memoized handlers for better performance
@@ -150,14 +151,24 @@ const Project = ({ id, view }) => {
 
   return (
     <div className={`relative flex flex-col w-full min-h-screen bg-black ${getVisibilityClasses()}`}>
-      {/* Header Section */}
-      <header className="flex-shrink-0 text-3xl sm:text-4xl md:text-5xl font-koulen sticky top-0 z-50 text-white bg-black flex items-center justify-center py-4 px-4">
-        <h2>Projects</h2>
-      </header>
+      {/* Header Section - Fixed for mobile */}
+   <motion.header 
+          className="flex items-center justify-center mb-[4%]"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-koulen text-white tracking-wider">
+            <motion.span
+              className="inline-block"
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Projects
+            </motion.span>
+          </h1>
+        </motion.header>
 
-      {/* Projects Grid */}
-      <main className="flex-1 px-4 py-6 sm:px-6 md:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-7xl mx-auto h-full">
+      {/* Projects Grid - Improved mobile layout */}
+      <main className="flex-1 p-3 xs:p-4 sm:px-6 md:px-8 pb-6">
+        <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4 sm:gap-6 max-w-7xl mx-auto">
           {PROJECTS_DATA.map((project) => (
             <ProjectCard
               key={project.id}
@@ -194,36 +205,38 @@ const ProjectCard = ({
   };
 
   const overlayClasses = `
-    absolute inset-0 flex items-center justify-center p-4 sm:p-6 
-    transition-all ${ANIMATION_DURATION} ease-in-out font-roboto font-light
+    absolute inset-0 flex items-center justify-center p-3 xs:p-4 sm:p-6 
+    transition-all ${ANIMATION_DURATION} ease-in-out font-light
     ${isHovered ? "" : project.overlayColor}
   `;
 
   const titleClasses = `
-    text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 
-    transition-all ${ANIMATION_DURATION} text-center leading-tight
+    text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 
+    transition-all ${ANIMATION_DURATION} text-center leading-tight font-semibold
     ${isHovered ? "translate-y-0" : HOVER_TRANSLATE}
   `;
 
   const detailsClasses = `
-    ${isHovered ? "opacity-100 bg-[#171717] z-50" : "opacity-0"}
-    rounded-lg text-base sm:text-lg md:text-xl lg:text-2xl font-bold 
-    transition-opacity ${ANIMATION_DURATION} w-full h-full
+    ${isHovered ? "opacity-100 bg-gray-900/95" : "opacity-0"}
+    rounded-lg transition-opacity ${ANIMATION_DURATION} w-full h-full
+    flex flex-col relative overflow-hidden
   `;
 
   const linkButtonClasses = `
-    absolute bottom-2 right-2 sm:bottom-3 sm:right-3 
-    py-2 px-3 sm:py-3 sm:px-4 cursor-pointer
-    flex text-black items-center gap-2 rounded-lg border 
-    transition-colors ease-linear bg-white 
+    absolute bottom-2 right-2 xs:bottom-3 xs:right-3 
+    py-1.5 px-2.5 xs:py-2 xs:px-3 sm:py-3 sm:px-4 cursor-pointer
+    flex text-black items-center gap-1.5 xs:gap-2 rounded-lg border 
+    transition-colors ease-linear bg-white text-sm xs:text-base
     hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-white
-    touch-manipulation
+    touch-manipulation z-10
   `;
 
   return (
     <article
       style={cardStyle}
-      className="relative text-white shadow-sm shadow-white/10 overflow-hidden rounded-lg cursor-pointer group min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] aspect-[4/3] sm:aspect-auto"
+      className="relative text-white shadow-lg shadow-black/20 overflow-hidden rounded-lg cursor-pointer group 
+                 h-48 xs:h-56 sm:h-64 md:h-fit lg:h-fit w-full
+                 border border-gray-700/50"
       onTouchStart={onTouchStart}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -239,12 +252,14 @@ const ProjectCard = ({
         </h3>
       </div>
 
-      {/* Project Details (shown on hover) */}
+      {/* Project Details (shown on hover/tap) */}
       <div 
         className={detailsClasses}
         onClick={(e) => e.stopPropagation()}
       >
-        <Carousel items={project.items}/>
+        <div className="flex-1">
+          <Carousel items={project.items}/>
+        </div>
         
         {/* External Link Button */}
         <button
@@ -253,7 +268,8 @@ const ProjectCard = ({
           aria-label={`Open ${project.name} in new tab`}
           type="button"
         >
-          <SquareArrowOutUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          <SquareArrowOutUpRight className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+          <span className="hidden xs:inline">View</span>
         </button>
       </div>
     </article>

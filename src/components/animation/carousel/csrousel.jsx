@@ -199,7 +199,7 @@ export default function Carousel({
             {carouselItems.map((item, index) => (
               <motion.div
                 key={index}
-                className={`carousel-item min-h-[200px]  md:h-[250px]  lg:min-h-[300px] w-full ${round ? "round" : ""}`}
+                className={`carousel-item min-h-[200px]  md:h-[250px]  xl:min-h-[300px] w-full ${round ? "round" : ""}`}
                 style={{
                   width: itemWidth || "100%",
                   rotateY: transforms[index],
