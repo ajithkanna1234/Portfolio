@@ -48,7 +48,8 @@ export default function Carousel({
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef(null);
   const containerPadding = 16;
-  const itemWidth = containerWidth > 0 ? containerWidth - containerPadding * 2 : 0;
+  const itemWidth =
+    containerWidth > 0 ? containerWidth - containerPadding * 2 : 0;
   const trackItemOffset = itemWidth + GAP;
 
   const carouselItems = loop ? [...items, items[0]] : items;
@@ -155,11 +156,11 @@ export default function Carousel({
   const dragProps = loop
     ? {}
     : {
-      dragConstraints: {
-        left: -trackItemOffset * (carouselItems.length - 1),
-        right: 0,
-      },
-    };
+        dragConstraints: {
+          left: -trackItemOffset * (carouselItems.length - 1),
+          right: 0,
+        },
+      };
 
   return (
     <div
@@ -168,7 +169,11 @@ export default function Carousel({
       style={{
         width: "100%",
         heigth: "100%",
-        ...(round && { height: "100%", aspectRatio: "1/1", borderRadius: "50%" }),
+        ...(round && {
+          height: "100%",
+          aspectRatio: "1/1",
+          borderRadius: "50%",
+        }),
       }}
     >
       {containerWidth > 0 && (
@@ -178,10 +183,12 @@ export default function Carousel({
             drag="x"
             {...dragProps}
             style={{
-              width: itemWidth,
+              // width: itemWidth,
               gap: `${GAP}px`,
               perspective: 1000,
-              perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
+              perspectiveOrigin: `${
+                currentIndex * trackItemOffset + itemWidth / 2
+              }px 50%`,
               x,
             }}
             onDragEnd={handleDragEnd}
@@ -192,26 +199,18 @@ export default function Carousel({
             {carouselItems.map((item, index) => (
               <motion.div
                 key={index}
-                className={`carousel-item ${round ? "round" : ""}`}
+                className={`carousel-item min-h-[200px]  md:h-[250px]  lg:min-h-[300px] w-full ${round ? "round" : ""}`}
                 style={{
                   width: itemWidth || "100%",
-                  height: round ? itemWidth : "100%",
                   rotateY: transforms[index],
                   ...(round && { borderRadius: "50%" }),
+                  position: "relative",
+                  backgroundImage: `url(${item?.img})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
                 transition={effectiveTransition}
               >
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${item?.img})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
-                  <div className="relative grid size-full">1</div>
-                </div>
                 {/* <div className={`carousel-item-header ${round ? "round" : ""}`}>
                   <span className="carousel-icon-container">
                     {item.icon}
@@ -224,17 +223,25 @@ export default function Carousel({
               </motion.div>
             ))}
           </motion.div>
-          <div className={`carousel-indicators-container ${round ? "round" : ""}`}>
+          <div
+            className={`carousel-indicators-container ${round ? "round" : ""}`}
+          >
             <div className="carousel-indicators">
               {items.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`carousel-indicator ${currentIndex % items.length === index ? "active" : "inactive"
-                    }`}
+                  className={`carousel-indicator ${
+                    currentIndex % items.length === index
+                      ? "active"
+                      : "inactive"
+                  }`}
                   animate={{
                     scale: currentIndex % items.length === index ? 1.2 : 1,
                   }}
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(index) }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(index);
+                  }}
                   transition={{ duration: 0.15 }}
                 />
               ))}

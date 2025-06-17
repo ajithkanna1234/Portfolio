@@ -113,7 +113,7 @@
 .carousel-indicators {
   margin-top: 16px;
   display: flex;
-  width: 150px;
+  gap: 4px;
   justify-content: space-between;
   padding: 0 32px;
 }

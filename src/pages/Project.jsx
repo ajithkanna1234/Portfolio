@@ -10,6 +10,33 @@ import img2 from "../components/assets/project/project-2.png";
 import img3 from "../components/assets/project/project-3.png";
 import img4 from "../components/assets/project/project-4.png";
 import img5 from "../components/assets/project/project-5.png";
+import img6 from "../components/assets/project/project-6.png";
+import img7 from "../components/assets/project/project-7.png";
+import img8 from "../components/assets/project/project-8.png";
+import img9 from "../components/assets/project/project-9.png";
+import img10 from "../components/assets/project/project-10.png";
+import img11 from "../components/assets/project/project-11.png";
+import img12 from "../components/assets/project/project-12.png";
+import img13 from "../components/assets/project/project-13.png";
+import img14 from "../components/assets/project/project-14.png";
+import img15 from "../components/assets/project/project-15.png";
+import img16 from "../components/assets/project/project-16.png";
+import img17 from "../components/assets/project/project-17.png";
+import img18 from "../components/assets/project/project-18.png";
+import img19 from "../components/assets/project/project-19.png";
+import img20 from "../components/assets/project/project-20.png";
+import img21 from "../components/assets/project/project-21.png";
+import img22 from "../components/assets/project/project-22.png";
+import img23 from "../components/assets/project/project-23.png";
+import img24 from "../components/assets/project/project-24.png";
+import img25 from "../components/assets/project/project-25.png";
+import img26 from "../components/assets/project/project-26.png";
+import img27 from "../components/assets/project/project-27.png";
+import img28 from "../components/assets/project/project-28.png";
+import img29 from "../components/assets/project/project-29.png";
+import img30 from "../components/assets/project/project-30.png";
+import img31 from "../components/assets/project/project-31.png";
+import img32 from "../components/assets/project/project-32.png";
 
 // Project data configuration
 const PROJECTS_DATA = [
@@ -20,16 +47,24 @@ const PROJECTS_DATA = [
     overlayColor: "bg-red-900/80",
     image: img1.src,
     items:[
-  { id: 1, img:img1.src },
-  { id: 2, img:img5.src },
+       { id: 1, img:img1.src },
+       { id: 2, img:img5.src },
 ]
-  },
+},
   {
     id: 2,
     name: "Cycle Website",
     link: "https://ajithkanna1234.github.io/cycle-webpage/",
     overlayColor: "bg-blue-900/80",
     image: img2.src,
+    items:[
+       { id: 1, img:img2.src },
+  { id: 2, img:img6.src },
+  { id: 3, img:img7.src },
+  { id: 4, img:img8.src },
+  { id: 5, img:img9.src },
+  { id: 6, img:img10.src },
+   ]
   },
   {
     id: 3,
@@ -37,13 +72,41 @@ const PROJECTS_DATA = [
     link: "https://e-learning-web-frontend.vercel.app/",
     overlayColor: "bg-green-900/80",
     image: img3.src,
-  },
-  {
-    id: 4,
-    name: "Todo List",
-    link: "https://ajithkanna1234.github.io/TodoList-ajith/",
-    overlayColor: "bg-yellow-900/80",
-    image: img4.src,
+    items: [
+       { id: 21, img: img3.src },
+  { id: 1, img: img11.src },
+  { id: 2, img: img12.src },
+  { id: 3, img: img13.src },
+  { id: 4, img: img14.src },
+  { id: 5, img: img15.src },
+  { id: 6, img: img16.src },
+  { id: 7, img: img17.src },
+  { id: 8, img: img18.src },
+  { id: 9, img: img19.src },
+  { id: 10, img: img20.src },
+  { id: 11, img: img21.src },
+  { id: 12, img: img22.src },
+  { id: 13, img: img23.src },
+  { id: 14, img: img24.src },
+  { id: 15, img: img25.src },
+  { id: 16, img: img26.src },
+  { id: 17, img: img28.src },
+  { id: 18, img: img29.src },
+  { id: 19, img: img30.src },
+  { id: 20, img: img27.src },
+]
+},
+{
+   id: 4,
+   name: "Todo List",
+   link: "https://ajithkanna1234.github.io/TodoList-ajith/",
+   overlayColor: "bg-yellow-900/80",
+   image: img4.src,
+   items: [
+  { id: 1, img: img4.src },
+  { id: 2, img: img31.src },
+  { id: 3, img: img32.src },
+]
   },
 ];
 
