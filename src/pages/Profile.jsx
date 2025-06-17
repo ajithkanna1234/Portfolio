@@ -29,7 +29,7 @@ const profileAnimations = {
 
 // Constants for better maintainability
 const PROFILE_CONTENT = {
-  name: "SOFTWARE DEVELOPER",
+  name: "WEB DEVELOPER",
   title: "AJITH KANNA",
   description: `MERN Stack Developer with 2 years of experience building scalable web 
   applications using React.js, Node.js, Express, and MongoDB. and collaborating in 
