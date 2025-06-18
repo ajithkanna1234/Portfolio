@@ -50,7 +50,8 @@ const PROJECTS_DATA = [
     items: [
       { id: 1, img: img1.src },
       { id: 2, img: img5.src },
-    ]
+    ],
+    skills:["Api Integration","React"]
   },
   {
     id: 2,
@@ -65,9 +66,11 @@ const PROJECTS_DATA = [
       { id: 4, img: img8.src },
       { id: 5, img: img9.src },
       { id: 6, img: img10.src },
-    ]
+    ],
+    skills:["HTML","cSS"]
   },
   {
+    skills:["React","NOde","Mongo DB","express","tailwind css","Ant D","Framer motion"],
     id: 3,
     name: "E-Learning Platform",
     link: "https://e-learning-web-frontend.vercel.app/",
@@ -98,6 +101,7 @@ const PROJECTS_DATA = [
     ]
   },
   {
+    skills:["React","localStorage"],
     id: 4,
     name: "Todo List",
     link: "https://ajithkanna1234.github.io/TodoList-ajith/",
@@ -151,7 +155,7 @@ const Project = ({ id = 1, view = 1 }) => {
         className="flex items-center justify-center py-4 sm:py-6 md:py-8 lg:py-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <h1 className="text-4xl md:text-6xl 2xl:text-7xl font-koulen text-white tracking-wider text-center px-4">
           <motion.span
@@ -243,14 +247,13 @@ const ProjectCard = ({
       `}>
         <h3 className={`
           text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 
-          transition-all duration-300 text-center leading-tight font-semibold
+          transition-all duration-300 text-center leading-tight
           ${isHovered ? "translate-y-0" : "translate-y-4"}
         `}>
           {!isHovered && project.name}
         </h3>
       </div>
 
-      {/* Project Details (shown on hover/tap) */}
       <div 
         className={`
           ${isHovered ? "opacity-100 bg-gray-900/95" : "opacity-0"}
@@ -267,6 +270,7 @@ const ProjectCard = ({
         </div>
         
         {/* External Link Button */}
+<div className="text-black hidden lg:flex absolute flex-wrap top-3 left-3 sm:top-4 sm:left-4 md:top-5 md:left-5 items-end gap-4">{project.skills?.map(v=>(<span key={v} className={`px-2 text-[10px] py-1 text-black uppercase bg-white rounded-md backdrop-blur-lg`}>{v}</span>))}</div>
         <button
           className={`
             absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5
