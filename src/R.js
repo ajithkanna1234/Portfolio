@@ -84,7 +84,7 @@ const ScrollSections = () => {
     if (isScrolling || !navigationState.canScrollUp) return;
 
     setIsScrolling(true);
-    const targetIndex = currentSectionIndex - 1;
+    const targetIndex = 0;
     const targetSection = sectionRefs.current[targetIndex];
 
     if (targetSection) {
@@ -158,19 +158,15 @@ const ScrollSections = () => {
           {...scrollButtonAnimations}
           onClick={onClick}
           disabled={isScrolling}
-          className="fixed left-1/2 transform -translate-x-1/2 bottom-4 z-50 
-                     text-white bg-black/20 backdrop-blur-lg rounded-full 
-                     p-2 hover:bg-black/40 transition-colors duration-200
-                     focus:outline-none focus:ring-2 focus:ring-white/50
-                     disabled:opacity-50 disabled:cursor-not-allowed"
+          className="fixed left-1/2 transform -translate-x-1/2 bottom-4 z-50 bg-white opacity-100 backdrop-blur-lg rounded-full p-2 hover:opacity-95 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={ariaLabel}
           whileHover="whileHover"
           whileTap="whileTap"
         >
           {direction === "up" ? (
-            <ArrowUp className="text-white" />
+            <ArrowUp className="text-black" />
           ) : (
-            <ArrowDown className="text-white" />
+            <ArrowDown className="text-black" />
           )}
         </motion.button>
       )}
@@ -188,7 +184,7 @@ const ScrollSections = () => {
             id={section.id}
             ref={(el) => (sectionRefs.current[index] = el)}
             {...sectionAnimations}
-            className="min-h-screen relative"
+            className="min-h-screen flex items-center justify-center relative"
             aria-label={section.label}
           >
             <Component
@@ -214,9 +210,8 @@ const ScrollSections = () => {
         "Scroll to next section"
       )}
       {/* Section Indicator */}
-      <div
-        className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 
-                      flex flex-col gap-2"
+      {/* <div
+        className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-2"
       >
         {SECTIONS_CONFIG.map((section, index) => (
           <button
@@ -230,8 +225,7 @@ const ScrollSections = () => {
                 setTimeout(() => setIsScrolling(false), 800);
               }
             }}
-            className={`w-3 h-3 rounded-full transition-all duration-300 
-                       ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               visibleSection === section.id
                 ? "bg-white scale-125"
                 : "bg-white/40 hover:bg-white/60"
@@ -240,7 +234,7 @@ const ScrollSections = () => {
             disabled={isScrolling}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

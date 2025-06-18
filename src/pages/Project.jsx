@@ -153,19 +153,10 @@ const Project = ({ id = 1, view = 1 }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-koulen text-white tracking-wider text-center px-4">
+        <h1 className="text-4xl md:text-6xl 2xl:text-7xl font-koulen text-white tracking-wider text-center px-4">
           <motion.span
-            className="inline-block"
-            animate={{ 
-              textShadow: [
-                "0 0 7px #fff", 
-                "0 0 10px #fff", 
-                "0 0 21px #fff", 
-                "0 0 42px #fff",
-                "0 0 7px #fff"
-              ]
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="whitespace-nowrap"
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Projects
           </motion.span>

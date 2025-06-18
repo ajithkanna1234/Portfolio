@@ -13,17 +13,17 @@ const profileAnimations = {
   nameTag: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.4, ease: "easeOut" }
   },
   description: {
     initial: { opacity: 0, x: -50 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, delay: 0.3, ease: "easeOut" }
+    transition: { duration: 0.4, delay: 0.3, ease: "easeOut" }
   },
   orb: {
     initial: { opacity: 0, scale: 0.8 },
     animate: { opacity: 1, scale: 1 },
-    transition: { duration: 1, delay: 0.5, ease: "easeOut" }
+    transition: { duration: 0.4, delay: 0.3, ease: "easeOut" }
   }
 };
 
@@ -48,14 +48,14 @@ const Profile = memo(({ id, view }) => {
   // Computed classes for cleaner JSX
   const containerClasses = `
     md:text-8xl text-4xl font-bold p-[4%] relative z-50 
-    tracking-widest h-screen grid gap-4
+    tracking-widest md:h-screen h-fit items-center grid gap-4
   `.trim();
 
   const descriptionClasses = `
     flex flex-col justify-between h-full bg-black text-sm lg:text-base 
     md:p-8 p-4 font-light font-roboto text-justify sm:w-1/2 
     tracking-wide text-white z-50 relative transition-all duration-700
-    ${isVisible ? "scale-100" : "scale-0"}
+    ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}
   `.trim();
 
   // Fixed orb container classes - properly hide in projects view

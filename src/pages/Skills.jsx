@@ -281,11 +281,11 @@ const Skills = ({ id, view, isVisible }) => {
     <motion.div
       className={cn(
         "relative w-full h-full font-koulen text-white z-50",
-        "transition-all duration-700 ease-in-out"
+        "transition-all duration-300 ease-in-out"
       )}
       initial={{ opacity: 0 }}
       animate={{ opacity: componentVisible ? 1 : 0 }}
-      transition={{ duration: 0.7, ease: "easeInOut" }}
+      transition={{ duration: 0.1, ease: "easeInOut" }}
       onMouseLeave={handleLeave}
       onTouchEnd={handleLeave}
     >
@@ -295,12 +295,12 @@ const Skills = ({ id, view, isVisible }) => {
           className="row-span-1 flex items-center justify-center"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: componentVisible ? 1 : 0, y: componentVisible ? 0 : -50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-koulen text-white tracking-wider">
+          <h1 className="text-4xl md:text-6xl 2xl:text-7xl font-koulen text-white tracking-wider">
             <motion.span
               className="inline-block"
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 0.2, repeat: Infinity, ease: "easeInOut" }}
             >
               Skills
             </motion.span>
