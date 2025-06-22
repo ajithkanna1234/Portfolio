@@ -6,7 +6,7 @@ export const useResumeDownload = () => {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const downloadResume = () => {
-    const googleDocId = "1h4vQPbc6u0ggf3sT6X3Cetvc0_d3k2XRw7Ne3ubglRM";
+    const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
     const downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf&id=${googleDocId}&export=download`;
 
     setIsDownloading(true);
