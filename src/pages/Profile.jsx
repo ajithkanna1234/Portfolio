@@ -72,7 +72,7 @@ const Profile = memo(({ id, view }) => {
 
   const renderResumeButton = () => (
     <InteractiveHoverButton
-      onClick={downloadResume}
+      onClick={()=>downloadResume("drive")} // docs , drive
       className="mt-4"
       disabled={isDownloading}
       aria-label={isDownloading ? "Downloading resume..." : "Download resume"}

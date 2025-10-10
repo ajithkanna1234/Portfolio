@@ -2,47 +2,65 @@
 
 import { useState } from "react";
 
-export const useResumeDownload = () => {
+export const useResumeDownload = (downloadUrl) => {
   const [isDownloading, setIsDownloading] = useState(false);
 
-  const downloadResume = () => {
-    
-    // GOOGLE DOCS METHOD
-    // const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
-    // const downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf&id=${googleDocId}&export=download`;
-    
-    // GOOGLE DRIVE METHOD
-    const fileId = "1F2d9sIX1mQp0VtfldEUhqQGtYoEzHQIF";
-    const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
-
+  const downloadResume = (source = 'docs') => {
     setIsDownloading(true);
 
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
-        const blob = xhr.response;
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'AJITHKANNA_RESUME.pdf';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+    try {
+      let downloadUrl;
+      
+      // Condition 1: Google Docs (Recommended - No CORS)
+      if (source === 'docs') {
+        const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
+        downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf`;
       }
-      setIsDownloading(false);
-    });
+      
+      // Condition 2: Google Drive
+      else if (source === 'drive') {
+        const fileId = "1F2d9sIX1mQp0VtfldEUhqQGtYoEzHQIF";
+        downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      }
+      
+      // Condition 3: Local file (if you add PDF to public folder)
+      else if (source === 'local') {
+        downloadUrl = '/AJITHKANNA_RESUME.pdf';
+      }
+      
+      // Condition 4: Download as DOCX
+      else if (source === 'docx') {
+        const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
+        downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=docx`;
+      }
+      
+      // Default fallback
+      else {
+        const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
+        downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf`;
+      }
 
-    xhr.addEventListener('error', () => {
+      // Create and trigger download
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = source === 'docx' ? 'AJITHKANNA_RESUME.docx' : 'AJITHKANNA_RESUME.pdf';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      setTimeout(() => {
+        document.body.removeChild(a);
+        setIsDownloading(false);
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Download failed:', error);
       setIsDownloading(false);
-      // Handle error here
-      console.error('Download failed');
-    });
-
-    xhr.open('GET', downloadUrl, true);
-    xhr.send();
+      alert('Failed to download resume. Please try again.');
+    }
   };
 
   return { downloadResume, isDownloading };

@@ -38,6 +38,8 @@ import img29 from "../components/assets/project/project-29.png";
 import img30 from "../components/assets/project/project-30.png";
 import img31 from "../components/assets/project/project-31.png";
 import img32 from "../components/assets/project/project-32.png";
+import img33 from "../components/assets/project/project-33.png";
+import img34 from "../components/assets/project/project-34.png";
 
 // Project data configuration
 const PROJECTS_DATA = [
@@ -113,6 +115,18 @@ const PROJECTS_DATA = [
       { id: 3, img: img32.src },
     ]
   },
+  {
+    skills:["Next JS","Laravel","Postgress","Shadcn UI"],
+    id: 5,
+    name: "Event Management System",
+    link: "https://github.com/ajithkanna1234/MINI_PROJECT.git",
+    overlayColor: "bg-pink-900/80",
+    image: img33.src,
+    items: [
+      { id: 1, img: img33.src },
+      { id: 2, img: img34.src },
+    ]
+  },
 ];
 
 const Project = ({ id = 1, view = 1 }) => {
@@ -171,7 +185,7 @@ const Project = ({ id = 1, view = 1 }) => {
       <main className="flex-1 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 pb-6 sm:pb-8 md:pb-12">
         <div className="w-full max-w-7xl mx-auto">
           {/* Mobile: Single column, Tablet: 2 columns, Desktop: 2 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
             {PROJECTS_DATA.map((project, index) => (
               <motion.div
                 key={project.id}
