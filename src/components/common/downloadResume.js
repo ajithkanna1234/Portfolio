@@ -6,8 +6,14 @@ export const useResumeDownload = () => {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const downloadResume = () => {
-    const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
-    const downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf&id=${googleDocId}&export=download`;
+    
+    // GOOGLE DOCS METHOD
+    // const googleDocId = "1qpPqnaCXlvKAJNea3Vo-KmxpJiwxBrI-Pkhb8WEFm9M";
+    // const downloadUrl = `https://docs.google.com/document/d/${googleDocId}/export?format=pdf&id=${googleDocId}&export=download`;
+    
+    // GOOGLE DRIVE METHOD
+    const fileId = "1F2d9sIX1mQp0VtfldEUhqQGtYoEzHQIF";
+    const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
     setIsDownloading(true);
 
